@@ -24,7 +24,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  background: linear-gradient(180deg, #061025 0%, #081427 100%);
+  background: linear-gradient(180deg, #061025 0%, #0b1a33 50%, #061025 100%);
   color: var(--muted);
   -webkit-font-smoothing: antialiased;
 }
@@ -259,7 +259,7 @@ footer .socials {
 .btn:hover {
   transform: translateY(-2px);
   transition: all .18s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, .3);
 }
 
 .btn.ghost {
