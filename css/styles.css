@@ -301,11 +301,13 @@ footer .socials {
   font-weight: 700;
   text-decoration: none;
   transition: all .18s ease;
+  cursor: pointer;
 }
 
 .btn:hover {
   transform: translateY(-2px);
   transition: all .18s ease;
+  cursor: pointer;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, .3);
 }
 
@@ -375,6 +377,18 @@ footer .socials {
   position: absolute;
   left: 0;
   color: var(--accent2);
+}
+
+.blue-list {
+  list-style: none;
+}
+
+.blue-list li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent2);
+  margin-right: 8px;
 }
 
 /* small */
