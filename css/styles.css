@@ -383,12 +383,18 @@ footer .socials {
   list-style: none;
 }
 
+.blue-list li {
+  padding: 5px 0;
+  color: var(--muted);
+  position: relative;
+  padding-left: 18px;
+}
+
 .blue-list li:before {
   content: "•";
   position: absolute;
   left: 0;
   color: var(--accent2);
-  margin-right: 8px;
 }
 
 /* small */

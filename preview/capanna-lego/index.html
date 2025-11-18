@@ -15,7 +15,11 @@
             <a class="brand" href="index.html" aria-label="Capanna Monti di Lego">CAPANNA • Monti di Lego</a>
 
             <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
-                <span></span><span></span><span></span>
+                <div class="hamburger" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
 
             <nav id="main-nav" class="main-nav" aria-label="Main navigation">
@@ -34,19 +38,20 @@
         <section class="hero">
             <div class="hero-slider" data-autoplay="true" data-interval="6000">
                 <div class="slide">
-                    <img src="images/hero-01.svg" alt="Monti di Lego - panorama" class="slide-img" />
+                    <img src="images/13391_13.jpg" alt="Monti di Lego - panorama" class="slide-img" />
                     <div class="slide-content">
                         <h1>Benvenuti alla <span class="accent">Capanna</span></h1>
                         <p>Grotto Monti di Lego — cucina ticinese, dormitori e panorami d'altri tempi.</p>
                         <div class="cta-group">
-                            <a class="btn" href="menu/index.html">Scopri la cucina</a>
-                            <button class="btn ghost open-reserve" id="reserve-cta">Prenota / Dormire</button>
+                            <a class="btn open-reserve" id="reserve-cta">Prenota / Dormire</a>
+                            <a class="btn ghost" href="menu/index.html">Scopri la cucina</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="slide">
-                    <img src="images/hero-02.svg" alt="Stufa a legna e tavolate" class="slide-img" />
+                    <img src="images/2017-04-05-PHOTO-00000016-1024x768.jpg" alt="Stufa a legna e tavolate"
+                        class="slide-img" />
                     <div class="slide-content">
                         <h2>Tradizione &amp; Semplicità</h2>
                         <p>Piatti semplici e genuini: minestrone, polenta, arrosti e torte fatte in casa.</p>
@@ -61,20 +66,49 @@
 
         <!-- About / short summary -->
         <section class="about container" id="about">
-            <div class="card">
-                <div class="card-media">
+            <!-- Mountain Divider -->
+            <svg class="mountain-divider show-on-mobile" viewBox="0 0 1440 260" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="mountainFade" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#dce8df" />
+                        <stop offset="100%" stop-color="#f5f4f2" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background layer -->
+                <path
+                    d="M0 180 L120 140 L260 200 L380 100 L560 180 L720 60 L900 160 L1100 80 L1300 160 L1440 120 L1440 260 L0 260 Z"
+                    fill="url(#mountainFade)" opacity="0.85" />
+
+                <!-- Middle layer -->
+                <path
+                    d="M0 200 L100 150 L240 220 L400 140 L540 200 L700 100 L880 200 L1080 120 L1300 200 L1440 160 L1440 260 L0 260 Z"
+                    fill="#c9dbce" opacity="0.8" />
+
+                <!-- Front layer -->
+                <path
+                    d="M0 230 L160 170 L300 240 L480 160 L640 230 L820 130 L1000 230 L1200 150 L1440 200 L1440 260 L0 260 Z"
+                    fill="#b5ccb9" opacity="0.9" />
+            </svg>
+            <div class="card" id="about-card">
+                <div class="card-media hide-on-mobile">
                     <img src="images/mountain-small.svg" alt="Monti di Lego illustration" />
                 </div>
-                <div class="card-body">
-                    <h3>La Capanna</h3>
-                    <p>
-                        La CAPANNA è aperta giornalmente da inizio aprile a fine ottobre.
-                        La capanna dispone di un dormitorio di 10–12 posti con piumini, doppi servizi e doccia.
-                        L'interno può ospitare 16 persone con tanto spazio all'esterno e una stufa a legna che scalda e
-                        cucina.
-                    </p>
-                    <a href="dove-siamo/index.html" class="link-cta">Come raggiungerci →</a>
-                </div>
+                <article>
+                    <div class="card-body">
+                        <h3>La Capanna</h3>
+                        <p>
+                            La CAPANNA è aperta giornalmente da inizio aprile a fine ottobre.
+                            La capanna dispone di un dormitorio di 10–12 posti con piumini, doppi servizi e doccia.
+                            L'interno può ospitare 16 persone con tanto spazio all'esterno e una stufa a legna che
+                            scalda e
+                            cucina.
+                        </p>
+                        <a href="dove-siamo/index.html" class="link-cta">Come raggiungerci →</a>
+                    </div>
+
+                </article>
             </div>
         </section>
 
@@ -135,11 +169,59 @@
             </div>
         </div>
     </footer>
+    <!-- Mountain Divider -->
+    <svg class="mountain-divider" viewBox="0 0 1440 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+            <linearGradient id="mountainFade" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#dce8df" />
+                <stop offset="100%" stop-color="#f5f4f2" />
+            </linearGradient>
+        </defs>
+
+        <!-- Background layer -->
+        <path
+            d="M0 180 L120 140 L260 200 L380 100 L560 180 L720 60 L900 160 L1100 80 L1300 160 L1440 120 L1440 260 L0 260 Z"
+            fill="url(#mountainFade)" opacity="0.85" />
+
+        <!-- Middle layer -->
+        <path
+            d="M0 200 L100 150 L240 220 L400 140 L540 200 L700 100 L880 200 L1080 120 L1300 200 L1440 160 L1440 260 L0 260 Z"
+            fill="#c9dbce" opacity="0.8" />
+
+        <!-- Front layer -->
+        <path d="M0 230 L160 170 L300 240 L480 160 L640 230 L820 130 L1000 230 L1200 150 L1440 200 L1440 260 L0 260 Z"
+            fill="#b5ccb9" opacity="0.9" />
+    </svg>
 
     <!-- Reservation modal (hidden) -->
     <div id="modal-reserve" class="modal" aria-hidden="true" role="dialog" aria-labelledby="reserve-title">
         <div class="modal-panel">
-            <button class="modal-close" aria-label="Close">✕</button>
+            <!-- Mountain Divider -->
+            <svg class="mountain-divider" viewBox="0 0 1440 260" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="mountainFade" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#dce8df" />
+                        <stop offset="100%" stop-color="#f5f4f2" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background layer -->
+                <path
+                    d="M0 180 L120 140 L260 200 L380 100 L560 180 L720 60 L900 160 L1100 80 L1300 160 L1440 120 L1440 260 L0 260 Z"
+                    fill="url(#mountainFade)" opacity="0.85" />
+
+                <!-- Middle layer -->
+                <path
+                    d="M0 200 L100 150 L240 220 L400 140 L540 200 L700 100 L880 200 L1080 120 L1300 200 L1440 160 L1440 260 L0 260 Z"
+                    fill="#c9dbce" opacity="0.8" />
+
+                <!-- Front layer -->
+                <path
+                    d="M0 230 L160 170 L300 240 L480 160 L640 230 L820 130 L1000 230 L1200 150 L1440 200 L1440 260 L0 260 Z"
+                    fill="#b5ccb9" opacity="0.9" />
+            </svg>
+            <button class="modal-close x-button" aria-label="Close">✕</button>
             <h3 id="reserve-title">Prenotazione / Richiesta pernottamento</h3>
             <form id="reserve-form">
                 <label>Nome <input type="text" name="nome" required></label>
@@ -148,7 +230,7 @@
                 <label>Messaggio <textarea name="message" rows="4"></textarea></label>
                 <div class="form-actions">
                     <button type="submit" class="btn">Invia richiesta</button>
-                    <button type="button" class="btn ghost modal-close">Annulla</button>
+                    <button type="button" class="btn ghost modal-close" aria-label="Close">Annulla</button>
                 </div>
                 <p class="note small">La prenotazione è obbligatoria per pernottare. Per urgenze, chiamare il numero
                     indicato in Contatti.</p>

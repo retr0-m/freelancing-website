@@ -12,8 +12,13 @@
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="../index.html">CAPANNA • Monti di Lego</a>
+
             <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
-                <span></span><span></span><span></span>
+                <div class="hamburger" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
             <nav id="main-nav" class="main-nav" aria-label="Main navigation">
                 <ul>
@@ -25,7 +30,29 @@
             </nav>
         </div>
     </header>
+    <!-- Mountain Divider -->
+    <svg class="mountain-divider" viewBox="0 0 1440 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+            <linearGradient id="mountainFade" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#dce8df" />
+                <stop offset="100%" stop-color="#f5f4f2" />
+            </linearGradient>
+        </defs>
 
+        <!-- Background layer -->
+        <path
+            d="M0 180 L120 140 L260 200 L380 100 L560 180 L720 60 L900 160 L1100 80 L1300 160 L1440 120 L1440 260 L0 260 Z"
+            fill="url(#mountainFade)" opacity="0.85" />
+
+        <!-- Middle layer -->
+        <path
+            d="M0 200 L100 150 L240 220 L400 140 L540 200 L700 100 L880 200 L1080 120 L1300 200 L1440 160 L1440 260 L0 260 Z"
+            fill="#c9dbce" opacity="0.8" />
+
+        <!-- Front layer -->
+        <path d="M0 230 L160 170 L300 240 L480 160 L640 230 L820 130 L1000 230 L1200 150 L1440 200 L1440 260 L0 260 Z"
+            fill="#b5ccb9" opacity="0.9" />
+    </svg>
     <main class="container">
         <section class="menu-intro">
             <h1>La nostra cucina</h1>

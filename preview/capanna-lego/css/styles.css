@@ -29,7 +29,7 @@ body {
 body {
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg, var(--bg), #f3f1ee 120%);
+    background: linear-gradient(180deg, var(--bg) 0%, #f3f1ee 50%, var(--bg) 100%);
     color: #222;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -102,24 +102,45 @@ body {
     width: 44px;
     height: 38px;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
-.nav-toggle span {
+.nav-toggle .hamburger {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-toggle .hamburger span {
     display: block;
     width: 22px;
     height: 2px;
     background: #333;
-    margin: 4px 0;
+    margin-bottom: 4px;
     border-radius: 2px;
-    transition: transform 180ms
+    transition: transform 180ms;
 }
+
+.nav-toggle .hamburger span:last-child {
+    margin-bottom: 0;
+}
+
+.mountain-divider {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
 
 /* hero */
 .hero {
     position: relative;
     overflow: hidden;
-    padding: 0
+    padding: 0;
 }
 
 .hero-slider {
@@ -154,7 +175,12 @@ body {
 
 .slide-content h1 {
     font-size: 2.1rem;
-    margin: 0 0 .5rem
+    margin: 0 0 .5rem;
+}
+
+.slide-content h2 {
+    font-size: 1.8rem;
+    margin: 0 0 .5rem;
 }
 
 .accent {
@@ -162,7 +188,7 @@ body {
 }
 
 .slide-content p {
-    margin: .5rem 0 1rem;
+    margin: .5rem 1.8rem 1rem;
     color: var(--muted)
 }
 
@@ -187,7 +213,8 @@ body {
 }
 
 .btn:hover {
-    transform: translateY(-3px)
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(50, 60, 50, 0.12);
 }
 
 .btn.ghost {
@@ -221,6 +248,12 @@ body {
     margin-top: 2rem
 }
 
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem
+}
+
 .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -233,6 +266,7 @@ body {
     border-radius: 12px;
     box-shadow: var(--shadow)
 }
+
 
 /* CTA */
 .cta {
@@ -247,8 +281,16 @@ body {
     gap: 1rem
 }
 
+.show-on-mobile {
+    display: none;
+}
+
 /* small screens */
 @media (max-width:900px) {
+    .slide-content {
+        margin: 30px;
+    }
+
     .grid-3 {
         grid-template-columns: 1fr 1fr
     }
@@ -259,12 +301,25 @@ body {
 }
 
 @media (max-width:640px) {
+
+    #about-card {
+        border-radius: 0 0 12px 12px;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .show-on-mobile {
+        display: block;
+    }
+
     .header-inner {
         padding: 0.5rem
     }
 
     .nav-toggle {
-        display: flex
+        display: flex !important;
     }
 
     .main-nav {
@@ -298,7 +353,7 @@ body {
 .site-footer {
     padding: 1.25rem 0;
     background: transparent;
-    border-top: 1px solid rgba(0, 0, 0, 0.04)
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .footer-inner {
@@ -318,7 +373,7 @@ body {
     background: rgba(0, 0, 0, 0.45);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 220ms
+    transition: opacity 220ms;
 }
 
 .modal[aria-hidden="false"] {
@@ -332,15 +387,43 @@ body {
     border-radius: 12px;
     max-width: 520px;
     width: 94%;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28)
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.modal-panel label {
+    display: block;
+    margin-bottom: .75rem;
+    font-weight: 600
+}
+
+.modal-panel input,
+.modal-panel textarea {
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: .25rem;
 }
 
 .modal-close {
-    background: none;
     border: 0;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
+.modal-close.x-button {
     position: absolute;
-    right: 1rem;
-    top: 1rem
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--card);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    top: calc(50% - 250px);
+    right: calc(50% - 260px);
+    font-size: 1.6rem;
+    box-sizing: border-box;
 }
 
 /* small helpers */
