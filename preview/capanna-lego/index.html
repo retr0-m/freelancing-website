@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Capanna - Grotto Monti di Lego</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <meta name="description" content="Capanna - Grotto Monti di Lego. Cucina tipica ticinese, dormitorio e panorami." />
+</head>
+
+<body class="page-home">
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Capanna Monti di Lego">CAPANNA • Monti di Lego</a>
+
+            <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="menu/index.html">Cucina</a></li>
+                    <li><a href="dove-siamo/index.html">Dove siamo</a></li>
+                    <li><a href="contatti/index.html">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero slider -->
+        <section class="hero">
+            <div class="hero-slider" data-autoplay="true" data-interval="6000">
+                <div class="slide">
+                    <img src="images/hero-01.svg" alt="Monti di Lego - panorama" class="slide-img" />
+                    <div class="slide-content">
+                        <h1>Benvenuti alla <span class="accent">Capanna</span></h1>
+                        <p>Grotto Monti di Lego — cucina ticinese, dormitori e panorami d'altri tempi.</p>
+                        <div class="cta-group">
+                            <a class="btn" href="menu/index.html">Scopri la cucina</a>
+                            <button class="btn ghost open-reserve" id="reserve-cta">Prenota / Dormire</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <img src="images/hero-02.svg" alt="Stufa a legna e tavolate" class="slide-img" />
+                    <div class="slide-content">
+                        <h2>Tradizione &amp; Semplicità</h2>
+                        <p>Piatti semplici e genuini: minestrone, polenta, arrosti e torte fatte in casa.</p>
+                        <a class="btn" href="menu/index.html">Menu del giorno</a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-control left" aria-label="Previous slide">&lsaquo;</button>
+            <button class="slider-control right" aria-label="Next slide">&rsaquo;</button>
+        </section>
+
+        <!-- About / short summary -->
+        <section class="about container" id="about">
+            <div class="card">
+                <div class="card-media">
+                    <img src="images/mountain-small.svg" alt="Monti di Lego illustration" />
+                </div>
+                <div class="card-body">
+                    <h3>La Capanna</h3>
+                    <p>
+                        La CAPANNA è aperta giornalmente da inizio aprile a fine ottobre.
+                        La capanna dispone di un dormitorio di 10–12 posti con piumini, doppi servizi e doccia.
+                        L'interno può ospitare 16 persone con tanto spazio all'esterno e una stufa a legna che scalda e
+                        cucina.
+                    </p>
+                    <a href="dove-siamo/index.html" class="link-cta">Come raggiungerci →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cuisine feature -->
+        <section class="features container">
+            <h2>Vogliamo parlare di cucina?</h2>
+            <div class="grid-3">
+                <article class="feature">
+                    <h4>Piatti semplici & stagionali</h4>
+                    <p>Durante la settimana minestrone, piatti freddi e spuntini a seconda della stagione.</p>
+                </article>
+                <article class="feature">
+                    <h4>Menu festivi</h4>
+                    <p>Arrosto, spezzatino o luganighetta in umido, spesso accompagnati da polenta, patate o
+                        tagliatelle.</p>
+                </article>
+                <article class="feature">
+                    <h4>Torte & Dessert</h4>
+                    <p>Le torte fatte in casa sono la specialità — non mancano mai per finire in dolcezza.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Quick contact / CTA -->
+        <section class="cta container">
+            <div class="cta-inner">
+                <h3>Vuoi pernottare o organizzare una sosta-pranzo?</h3>
+                <p>La prenotazione è obbligatoria per pernottare ed è gradita per i gruppi. Chiama o scrivi per info.
+                </p>
+                <div class="cta-actions">
+                    <a class="btn" href="contatti/index.html">Contatti & Prenotazioni</a>
+                    <button class="btn ghost" id="open-map">Mostra mappa</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials container small">
+            <h4>Link utili</h4>
+            <ul class="links-list">
+                <li><a href="https://www.ascona-locarno.ch" target="_blank" rel="noopener">Ascona - Locarno (Ente
+                        Turistico Lago Maggiore)</a></li>
+                <li><a href="https://www.capanneti.ch" target="_blank" rel="noopener">Capanneti - Capanne alpine in
+                        Ticino</a></li>
+                <li><a href="https://www.fartiamo.ch" target="_blank" rel="noopener">FART orari bus</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>
+                <p>© 2010 - R. Repetti</p>
+                <p class="small">Dati originali e contatti: vedi pagina Contatti. (Fonte: file originale)</p>
+            </div>
+            <div class="footer-contacts">
+                <a href="contatti/index.html">Contatti</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reservation modal (hidden) -->
+    <div id="modal-reserve" class="modal" aria-hidden="true" role="dialog" aria-labelledby="reserve-title">
+        <div class="modal-panel">
+            <button class="modal-close" aria-label="Close">✕</button>
+            <h3 id="reserve-title">Prenotazione / Richiesta pernottamento</h3>
+            <form id="reserve-form">
+                <label>Nome <input type="text" name="nome" required></label>
+                <label>Telefono o email <input type="text" name="contact" required></label>
+                <label>Data prevista <input type="date" name="date"></label>
+                <label>Messaggio <textarea name="message" rows="4"></textarea></label>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Invia richiesta</button>
+                    <button type="button" class="btn ghost modal-close">Annulla</button>
+                </div>
+                <p class="note small">La prenotazione è obbligatoria per pernottare. Per urgenze, chiamare il numero
+                    indicato in Contatti.</p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/scripts.js" defer></script>
+</body>
+
+</html>

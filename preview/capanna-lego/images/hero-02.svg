@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+    <rect width="1200" height="600" fill="#fffaf6" />
+    <g transform="translate(120,80)">
+        <rect x="0" y="200" width="800" height="320" rx="20" fill="#f3efe8" stroke="#e3d7cd" />
+        <circle cx="120" cy="120" r="60" fill="#f7e9d8" />
+        <rect x="40" y="200" width="200" height="40" rx="8" fill="#d9cbb9" />
+        <path d="M400 280 q40 -60 80 0" fill="#f6d9c1" />
+    </g>
+    <text x="62" y="520" font-family="sans-serif" font-size="18" fill="#6b6b6b">Stufa a legna,
+        curiosità e piatti caldi.</text>
+</svg>
