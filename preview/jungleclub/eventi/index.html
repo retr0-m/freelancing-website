@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Eventi — Jungle Club Lugano</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-inner container">
+            <div class="brand">
+                <img src="../images/logo.svg" alt="">
+                <h1>Jungle Club Lugano</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="../index/index.html">Home</a>
+                <a href="../about/index.html">Chi Siamo</a>
+                <a href="../eventi/index.html">Eventi</a>
+                <a href="../gallery/index.html">Gallery</a>
+                <a href="../contatti/index.html">Contatti</a>
+                <a class="cta" href="#" data-modal-open="modal-prenota">Prenota</a>
+            </nav>
+            <button class="hamburger">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="section container">
+            <div class="reveal">
+                <h2>Calendario Eventi</h2>
+                <p class="lead">Scorri i prossimi sabati e gli special guest della stagione.</p>
+            </div>
+
+            <div class="grid" style="margin-top:18px">
+                <!-- Repeatable event items -->
+                <article class="event-card reveal">
+                    <img src="../images/party-1.jpg" alt="">
+                    <h3>Jungle Prime — Sabato 22 Nov</h3>
+                    <p>Ospite: DJ Marco — Due sale, ingresso omaggio entro 00:30</p>
+                </article>
+                <article class="event-card reveal">
+                    <img src="../images/party-2.jpg" alt="">
+                    <h3>Papeete Special — Venerdì 28 Nov</h3>
+                    <p>Party a tema beach con animazione e visual</p>
+                </article>
+                <article class="event-card reveal">
+                    <img src="../images/party-3.jpg" alt="">
+                    <h3>Guest Night — Sabato 6 Dic</h3>
+                    <p>DJ internazionale + Live VJ</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container center">Per info: +41 91 993 19 52 — 🔞 18+</div>
+    </footer>
+
+    <div class="modal-backdrop">
+        <div class="modal" id="modal-prenota" style="display:none"><button class="close" data-modal-close>✕</button>
+            <h3>Prenota</h3>
+            <p>Chiama: +41 91 993 19 52</p>
+        </div>
+    </div>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
