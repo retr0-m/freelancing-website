@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL 74 | Bar Ristorante Pizzeria Lugano</title>
+
+    <!-- Tailwind CSS (Framework Grafico) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome (Icone) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURAZIONE STILI PERSONALIZZATI --- */
+        :root {
+            --primary: #D4AF37;
+            /* Oro */
+            --dark-bg: #121212;
+            --dark-surface: #1E1E1E;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: #f3f4f6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Effetto Vetro (Glassmorphism) */
+        .glass {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* Animazioni di Caricamento (Reveal on Scroll) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Parallax */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        /* Button Hover Effect */
+        .btn-gold {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .btn-gold::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-gold:hover::after {
+            left: 100%;
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--dark-bg);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="text-center">
+            <div class="spinner mx-auto mb-4"></div>
+            <h2 class="text-xl tracking-widest text-gold-500 serif-font">AL 74</h2>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#"
+                class="text-2xl md:text-3xl font-bold serif-font text-white tracking-wider flex items-center gap-2">
+                <span class="text-[#D4AF37]">AL</span> 74
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide uppercase">
+                <a href="#home" class="hover:text-[#D4AF37] transition-colors">Home</a>
+                <a href="#about" class="hover:text-[#D4AF37] transition-colors">Chi Siamo</a>
+                <a href="#menu" class="hover:text-[#D4AF37] transition-colors">Menu</a>
+                <a href="#gallery" class="hover:text-[#D4AF37] transition-colors">Galleria</a>
+                <a href="#contact"
+                    class="px-5 py-2 border border-[#D4AF37] text-[#D4AF37] rounded hover:bg-[#D4AF37] hover:text-black transition-all duration-300">Prenota</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-white focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8 text-xl">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#home" class="mobile-link hover:text-[#D4AF37]">Home</a>
+            <a href="#about" class="mobile-link hover:text-[#D4AF37]">Chi Siamo</a>
+            <a href="#menu" class="mobile-link hover:text-[#D4AF37]">Menu</a>
+            <a href="#gallery" class="mobile-link hover:text-[#D4AF37]">Galleria</a>
+            <a href="#contact" class="mobile-link text-[#D4AF37]">Contatti</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#121212]"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10 pt-20">
+            <p class="reveal text-[#D4AF37] text-lg md:text-xl font-medium tracking-[0.2em] mb-4 uppercase">Lugano, Via
+                Trevano 74</p>
+            <h1 class="reveal text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+                Gusto Italiano,<br> <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB]">Anima
+                    Locale</span>
+            </h1>
+            <p class="reveal text-gray-300 max-w-2xl mx-auto text-lg mb-10 font-light">
+                Dal caffè del mattino alla pizza serale. Un punto di riferimento storico, rivisitato in chiave moderna.
+            </p>
+            <div class="reveal flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#menu"
+                    class="btn-gold bg-[#D4AF37] text-black px-8 py-4 rounded font-bold uppercase tracking-wider hover:bg-white transition-colors">
+                    Scopri il Menu
+                </a>
+                <a href="tel:0919714346"
+                    class="btn-gold border border-white text-white px-8 py-4 rounded font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">
+                    <i class="fas fa-phone-alt mr-2"></i> 091 971 43 46
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- INFO BAR (Sticky on Mobile) -->
+    <div class="bg-[#1E1E1E] border-b border-gray-800 py-4">
+        <div
+            class="container mx-auto px-6 flex flex-wrap justify-center md:justify-between items-center gap-4 text-sm text-gray-400">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2"><i class="far fa-clock text-[#D4AF37]"></i> Lun-Sab: 07:00 -
+                    23:00</span>
+                <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-[#D4AF37]"></i> Via Trevano
+                    74</span>
+            </div>
+            <div class="hidden md:block text-[#D4AF37] font-semibold">
+                Il vero sapore a Lugano
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <!-- Image Grid -->
+                <div class="w-full md:w-1/2 relative reveal">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Bar" class="rounded-lg shadow-2xl w-full h-64 object-cover transform translate-y-8">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Restaurant" class="rounded-lg shadow-2xl w-full h-64 object-cover">
+                    </div>
+                    <!-- Decorative Circle -->
+                    <div
+                        class="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-[#D4AF37]/20 rounded-full animate-pulse">
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="w-full md:w-1/2 reveal">
+                    <h4 class="text-[#D4AF37] tracking-widest uppercase mb-2 font-bold">La Nostra Storia</h4>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Non solo un Bar,<br>una Famiglia.</h2>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Situato nel cuore pulsante di Lugano, in Via Trevano 74, AL 74 è il punto d'incontro dove la
+                        tradizione italiana incontra la precisione svizzera.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        Dalla colazione perfetta per iniziare la giornata, al pranzo di lavoro veloce e gustoso, fino
+                        all'aperitivo e alla cena con la nostra famosa pizza. Utilizziamo solo ingredienti freschi e
+                        selezionati per garantire un'esperienza autentica.
+                    </p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-[#D4AF37]"></i>
+                            <span>Ingredienti 100% Freschi</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-[#D4AF37]"></i>
+                            <span>Impasto Pizza a Lunga Lievitazione</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-[#D4AF37]"></i>
+                            <span>Atmosfera Accogliente</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU HIGHLIGHTS -->
+    <section id="menu" class="py-24 bg-[#181818]">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-[#D4AF37] text-sm font-bold uppercase tracking-widest">Le Nostre Specialità</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2">Il Gusto della Tradizione</h2>
+                <div class="w-24 h-1 bg-[#D4AF37] mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-6 rounded-xl relative group reveal overflow-hidden">
+                    <div class="h-48 mb-6 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Pizza"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold font-serif">Pizza Napoletana</h3>
+                        <span class="text-[#D4AF37] font-bold text-xl">Da CHF 14.-</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Pomodoro San Marzano, Mozzarella di Bufala, Basilico fresco.
+                        L'autenticità nel piatto.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 rounded-xl relative group reveal overflow-hidden"
+                    style="transition-delay: 100ms;">
+                    <div class="h-48 mb-6 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1626844131082-256783844137?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Pasta"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold font-serif">Primi Piatti</h3>
+                        <span class="text-[#D4AF37] font-bold text-xl">Da CHF 18.-</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Pasta fresca fatta in casa, risotti e le migliori ricette
+                        della tradizione italiana.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 rounded-xl relative group reveal overflow-hidden"
+                    style="transition-delay: 200ms;">
+                    <div class="h-48 mb-6 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Cocktails"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold font-serif">Aperitivo</h3>
+                        <span class="text-[#D4AF37] font-bold text-xl">Happy Hour</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Cocktail classici e innovativi accompagnati da stuzzichini
+                        gourmet. Il miglior after-work.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 reveal">
+                <a href="#"
+                    class="inline-block border-b-2 border-[#D4AF37] text-[#D4AF37] pb-1 hover:text-white hover:border-white transition-all">Visualizza
+                    il menu completo (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER PARALLAX -->
+    <section class="py-32 relative bg-fixed bg-center bg-cover flex items-center justify-center"
+        style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center reveal">
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 font-serif">Prenota il tuo tavolo</h2>
+            <p class="text-xl text-gray-300 mb-8">Vivi un'esperienza culinaria unica a Lugano.</p>
+            <a href="tel:0919714346"
+                class="bg-[#D4AF37] text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-white transition duration-300 transform hover:scale-105 inline-flex items-center gap-3">
+                <i class="fas fa-phone-alt"></i> Chiama Ora 091 971 43 46
+            </a>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="mb-12 reveal">
+                <h2 class="text-4xl font-bold font-serif">Momenti AL 74</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                <div class="col-span-2 row-span-2 overflow-hidden rounded-xl reveal">
+                    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Gallery">
+                </div>
+                <div class="overflow-hidden rounded-xl reveal">
+                    <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Gallery">
+                </div>
+                <div class="overflow-hidden rounded-xl reveal">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Gallery">
+                </div>
+                <div class="col-span-2 overflow-hidden rounded-xl reveal">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Gallery">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FOOTER -->
+    <section id="contact" class="bg-[#181818] pt-24 pb-10 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+                <!-- Info -->
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold mb-8 font-serif">Vieni a Trovarci</h2>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Indirizzo</h4>
+                                <p class="text-gray-400">Via Trevano 74,<br>6900 Lugano, Svizzera</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] flex-shrink-0">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Telefono</h4>
+                                <a href="tel:0919714346" class="text-gray-400 hover:text-[#D4AF37] transition">091 971
+                                    43 46</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] flex-shrink-0">
+                                <i class="fab fa-facebook-f text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Social</h4>
+                                <a href="https://it-it.facebook.com/Al-74-435742699821976/" target="_blank"
+                                    class="text-gray-400 hover:text-[#D4AF37] transition">Seguici su Facebook</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder (Functional styling) -->
+                <div class="reveal h-[400px] w-full bg-gray-800 rounded-xl overflow-hidden relative group">
+                    <!-- Static Map Image for Performance/Offline -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2777.218625920786!2d8.959828315573484!3d46.01235697911135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4784320e8d35c2b5%3A0x6b8f87e5b1e6050!2sVia%20Trevano%2074%2C%206900%20Lugano!5e0!3m2!1sit!2sch!4v1620000000000!5m2!1sit!2sch"
+                        width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);"
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
+
+                    <div class="absolute bottom-4 right-4">
+                        <a href="https://goo.gl/maps/xyz" target="_blank"
+                            class="bg-[#D4AF37] text-black px-4 py-2 rounded text-sm font-bold shadow-lg hover:bg-white transition">
+                            <i class="fas fa-directions mr-1"></i> Indicazioni
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                <p>&copy; 2024 AL 74 Lugano. Tutti i diritti riservati.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Loading Animation
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu-btn');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        btn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Navbar Scroll Effect (Glassmorphism on Scroll)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass');
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('glass');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Animate only once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
