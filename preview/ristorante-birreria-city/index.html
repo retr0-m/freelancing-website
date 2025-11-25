@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ristorante Birreria City | Lugano</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --beer: #F59E0B;
+            /* Amber 500 */
+            --foam: #FEF3C7;
+            /* Amber 100 */
+            --dark: #111827;
+            /* Gray 900 */
+            --accent: #B45309;
+            /* Amber 700 */
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: var(--dark);
+            color: #E5E7EB;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand-font {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Hero Text Stroke Effect */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+            transition: all 0.5s ease;
+        }
+
+        .group:hover .text-stroke {
+            -webkit-text-stroke: 0px;
+            color: var(--beer);
+        }
+
+        /* Custom Cursor */
+        .beer-cursor {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23F59E0B" stroke-width="2"><path d="M17 11h1a3 3 0 0 1 0 6h-1"></path><path d="M9 12v6"></path><path d="M13 12v6"></path><path d="M14 7.5c-1.1 0-2.14.35-3 1a6 6 0 1 0-8 0c0 4.42 3.58 8 8 8h6a4 4 0 0 0 0-8v-3a2 2 0 1 0-4 0v.5"></path></svg>'), auto;
+        }
+
+        /* Diagonal Section Dividers - FIXED for Mobile */
+        .clip-diagonal {
+            /* Bottom cut */
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 80px), 0 100%);
+        }
+
+        .clip-diagonal-reverse {
+            /* Top cut - Fixed 80px instead of percentage to prevent text cover on tall mobile sections */
+            clip-path: polygon(0 80px, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Beer Bubble Animation */
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 10px;
+            height: 10px;
+            background: rgba(245, 158, 11, 0.3);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+        }
+
+        /* Bubble animations omitted for brevity, same as before */
+        .bubble:nth-child(1) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-duration: 8s;
+        }
+
+        .bubble:nth-child(2) {
+            left: 20%;
+            width: 10px;
+            height: 10px;
+            animation-duration: 5s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(3) {
+            left: 35%;
+            width: 15px;
+            height: 15px;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(4) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-duration: 11s;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(5) {
+            left: 65%;
+            width: 12px;
+            height: 12px;
+            animation-duration: 6s;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(6) {
+            left: 80%;
+            width: 18px;
+            height: 18px;
+            animation-duration: 9s;
+            animation-delay: 1s;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(50px);
+            }
+
+            100% {
+                bottom: 1000px;
+                transform: translateX(-50px);
+            }
+        }
+    </style>
+</head>
+
+<body class="beer-cursor antialiased">
+
+    <!-- HERO SECTION -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden clip-diagonal">
+        <!-- Background -->
+        <div
+            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1575444758702-4a6b9222336e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-gray-900/30"></div>
+
+        <!-- Bubbles -->
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 container mx-auto px-4 text-center">
+            <div
+                class="mb-4 inline-block border border-yellow-500/50 px-4 py-1 rounded-full bg-black/30 backdrop-blur-sm">
+                <span class="text-yellow-500 text-sm font-bold tracking-widest uppercase">Via Emilio Bossi 4,
+                    Lugano</span>
+            </div>
+
+            <h1 class="text-6xl md:text-8xl font-bold mb-4 leading-none group cursor-default">
+                <span class="block text-white">BIRRERIA</span>
+                <span class="block text-stroke md:text-9xl">CITY</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 font-light max-w-2xl mx-auto">
+                Dove la buona birra incontra la cucina autentica.
+                <br><span class="text-yellow-500 font-bold">Il tuo ritrovo a Lugano.</span>
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="#menu"
+                    class="bg-yellow-600 hover:bg-yellow-500 text-black font-bold py-4 px-10 rounded-sm transform hover:-translate-y-1 transition duration-300 uppercase tracking-wider">
+                    Il Nostro Menù
+                </a>
+                <a href="tel:0919226480"
+                    class="border border-white hover:border-yellow-500 hover:text-yellow-500 text-white font-bold py-4 px-10 rounded-sm transition duration-300 uppercase tracking-wider">
+                    Prenota Tavolo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- QUICK INFO STRIP -->
+    <div
+        class="bg-yellow-600 py-6 relative z-20 -mt-20 mx-4 md:mx-20 rounded-t-lg shadow-2xl transform md:-translate-y-1/2 md:mt-0">
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-yellow-700/50">
+            <div class="p-2">
+                <i class="fas fa-clock text-2xl text-gray-900 mb-2"></i>
+                <h3 class="font-bold text-gray-900 uppercase">Aperti Tutti i Giorni</h3>
+                <p class="text-yellow-100 text-sm">Pranzo e Cena</p>
+            </div>
+            <div class="p-2">
+                <i class="fas fa-beer text-2xl text-gray-900 mb-2"></i>
+                <h3 class="font-bold text-gray-900 uppercase">Birre Selezionate</h3>
+                <p class="text-yellow-100 text-sm">Alla spina e in bottiglia</p>
+            </div>
+            <div class="p-2">
+                <i class="fas fa-utensils text-2xl text-gray-900 mb-2"></i>
+                <h3 class="font-bold text-gray-900 uppercase">Cucina Calda</h3>
+                <p class="text-yellow-100 text-sm">Fino a tarda sera</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-yellow-600/20 rounded-lg transform rotate-3"></div>
+                    <img src="./unnamed-2.jpg" alt="Interior"
+                        class="relative rounded-lg shadow-2xl grayscale hover:grayscale-0 transition duration-700 w-full object-cover h-[400px]">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h4 class="text-yellow-500 font-bold tracking-widest uppercase mb-2">Chi Siamo</h4>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 brand-font leading-tight">
+                    NON SOLO BIRRA,<br>MA <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">STILE DI
+                        VITA.</span>
+                </h2>
+                <p class="text-gray-400 mb-6 text-lg">
+                    Situato in Via Emilio Bossi 4, il Ristorante Birreria City è un punto di riferimento per chi cerca
+                    un ambiente genuino.
+                </p>
+                <p class="text-gray-400 mb-8">
+                    Offriamo una selezione curata di birre artigianali e commerciali, accompagnate da piatti della
+                    tradizione, burger succulenti e specialità alla griglia. Perfetto per il pranzo di lavoro o una
+                    serata tra amici.
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="h-px bg-gray-700 flex-grow"></div>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <i class="fas fa-star text-yellow-500"></i>
+                    <div class="h-px bg-gray-700 flex-grow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU PREVIEW (Accordion Style) -->
+    <!-- UPDATED: Added pt-32 to push text down below the diagonal cut -->
+    <section id="menu" class="pt-32 pb-24 bg-gray-800 clip-diagonal-reverse relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 relative z-10">
+                <h2 class="text-4xl font-bold text-white brand-font uppercase">I Nostri Classici</h2>
+                <p class="text-yellow-500 mt-2">Gusto deciso, porzioni abbondanti</p>
+                <p>Tutti i prodotti esposti non sono veritieri, bensì solo esempi per l'anteprima</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Food Card 1 -->
+                <div
+                    class="bg-gray-900 rounded-xl overflow-hidden shadow-lg group hover:-translate-y-2 transition duration-300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="./unnamed-3.jpg" alt="Burger"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-yellow-600 text-black font-bold px-3 py-1 rounded text-sm">
+                            BEST SELLER</div>
+                    </div>
+                    <div class="p-6">
+
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="text-xl font-bold text-white uppercase brand-font">City Burger</h3>
+                            <span class="text-yellow-500 font-bold">CHF 24</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">200g Manzo svizzero, formaggio raclette, bacon croccante,
+                            salsa della casa.</p>
+                        <button
+                            class="w-full border border-gray-700 text-gray-300 hover:bg-yellow-600 hover:text-black hover:border-yellow-600 py-2 rounded transition uppercase text-xs font-bold tracking-widest">Ordina</button>
+                    </div>
+                </div>
+
+                <!-- Food Card 2 -->
+                <div
+                    class="bg-gray-900 rounded-xl overflow-hidden shadow-lg group hover:-translate-y-2 transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="./unnamed-4.jpg" alt="Steak"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="text-xl font-bold text-white uppercase brand-font">Entrecôte Grill</h3>
+                            <span class="text-yellow-500 font-bold">CHF 32</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Taglio pregiato alla griglia con burro alle erbe e
+                            patatine fritte country.</p>
+                        <button
+                            class="w-full border border-gray-700 text-gray-300 hover:bg-yellow-600 hover:text-black hover:border-yellow-600 py-2 rounded transition uppercase text-xs font-bold tracking-widest">Ordina</button>
+                    </div>
+                </div>
+
+                <!-- Food Card 3 -->
+                <div
+                    class="bg-gray-900 rounded-xl overflow-hidden shadow-lg group hover:-translate-y-2 transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Pasta"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="text-xl font-bold text-white uppercase brand-font">Cordon Bleu</h3>
+                            <span class="text-yellow-500 font-bold">CHF 28</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Gigante, ripieno di prosciutto cotto e formaggio
+                            d'alpeggio filante.</p>
+                        <button
+                            class="w-full border border-gray-700 text-gray-300 hover:bg-yellow-600 hover:text-black hover:border-yellow-600 py-2 rounded transition uppercase text-xs font-bold tracking-widest">Ordina</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEER SHOWCASE -->
+    <section class="py-20 bg-black text-center relative overflow-hidden">
+        <div
+            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-50">
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl md:text-6xl font-bold text-white brand-font mb-12">
+                ALLA SPINA <span class="text-yellow-600">/</span> IN BOTTIGLIA
+            </h2>
+
+            <!-- Horizontal Scroll Container -->
+            <div class="flex overflow-x-auto gap-6 pb-8 snap-x mx-auto max-w-5xl px-4 scrollbar-hide">
+                <!-- Beer Item -->
+                <div
+                    class="flex-none w-64 snap-center bg-gray-900 border border-gray-800 p-6 rounded-lg hover:border-yellow-600 transition group cursor-pointer">
+                    <div class="h-40 flex items-center justify-center mb-4">
+                        <i
+                            class="fas fa-beer text-6xl text-gray-700 group-hover:text-yellow-500 transition duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white uppercase">Lager Hell</h3>
+                    <p class="text-yellow-600 text-sm font-bold mt-1">4.8% VOL</p>
+                    <p class="text-gray-500 text-xs mt-2">Bionda classica, fresca e dissetante.</p>
+                </div>
+
+                <!-- Beer Item -->
+                <div
+                    class="flex-none w-64 snap-center bg-gray-900 border border-gray-800 p-6 rounded-lg hover:border-yellow-600 transition group cursor-pointer">
+                    <div class="h-40 flex items-center justify-center mb-4">
+                        <i
+                            class="fas fa-glass-whiskey text-6xl text-gray-700 group-hover:text-amber-700 transition duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white uppercase">Red Ale</h3>
+                    <p class="text-yellow-600 text-sm font-bold mt-1">5.2% VOL</p>
+                    <p class="text-gray-500 text-xs mt-2">Ambrata, note di caramello e malto tostato.</p>
+                </div>
+
+                <!-- Beer Item -->
+                <div
+                    class="flex-none w-64 snap-center bg-gray-900 border border-gray-800 p-6 rounded-lg hover:border-yellow-600 transition group cursor-pointer">
+                    <div class="h-40 flex items-center justify-center mb-4">
+                        <i
+                            class="fas fa-wine-bottle text-6xl text-gray-700 group-hover:text-yellow-200 transition duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white uppercase">Weizen</h3>
+                    <p class="text-yellow-600 text-sm font-bold mt-1">5.4% VOL</p>
+                    <p class="text-gray-500 text-xs mt-2">Tororbida, fruttata, sentori di banana e chiodi di garofano.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION & FOOTER -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-4 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Text Info -->
+                <div>
+                    <h2 class="text-3xl font-bold text-white brand-font mb-6 uppercase">Contatti & Posizione</h2>
+                    <ul class="space-y-6 text-lg text-gray-400">
+                        <li class="flex items-start gap-4 hover:text-yellow-500 transition cursor-pointer">
+                            <i class="fas fa-map-marker-alt mt-1 text-yellow-600"></i>
+                            <div>
+                                <span
+                                    class="block text-white font-bold text-sm uppercase tracking-wider">Indirizzo</span>
+                                Via Emilio Bossi 4, 6900 Lugano
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 hover:text-yellow-500 transition cursor-pointer">
+                            <i class="fas fa-phone-alt mt-1 text-yellow-600"></i>
+                            <div>
+                                <span
+                                    class="block text-white font-bold text-sm uppercase tracking-wider">Telefono</span>
+                                <a href="tel:0919226480">091 922 64 80</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="far fa-clock mt-1 text-yellow-600"></i>
+                            <div>
+                                <span class="block text-white font-bold text-sm uppercase tracking-wider">Orari</span>
+                                Lun - Dom: 10:00 - 23:00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Map -->
+                <div class="h-[300px] bg-gray-800 rounded-lg overflow-hidden relative">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2777.307204652285!2d8.95678231557342!3d46.0105829791113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4784320e8b2b2b2b%3A0x123456789!2sVia%20Emilio%20Bossi%204%2C%206900%20Lugano!5e0!3m2!1sit!2sch!4v1620000000000!5m2!1sit!2sch"
+                        width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(85%);"
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-gray-800 text-center text-gray-600 text-sm">
+                &copy; 2025 Ristorante Birreria City. Powered by Matteo Cola.
+            </div>
+        </div>
+    </footer>
+
+    <!-- STICKY MOBILE CALL BAR -->
+    <div
+        class="fixed bottom-0 left-0 right-0 bg-yellow-600 p-4 md:hidden z-50 flex justify-between items-center shadow-lg">
+        <div class="text-black font-bold text-sm uppercase leading-tight">
+            Hai fame?<br>Prenota ora
+        </div>
+        <a href="tel:0919226480"
+            class="bg-black text-yellow-500 px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-800 transition shadow-lg flex items-center gap-2">
+            <i class="fas fa-phone"></i> Chiama
+        </a>
+    </div>
+
+    <script>
+        // Simple Reveal on Scroll
+        const revealElements = document.querySelectorAll('section');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((section) => {
+                const elementTop = section.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    section.classList.add('opacity-100', 'translate-y-0');
+                    section.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        };
+
+        // Add CSS classes for animation initial state
+        revealElements.forEach(el => {
+            el.classList.add('transition', 'duration-1000', 'opacity-0', 'translate-y-10');
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+</body>
+
+</html>

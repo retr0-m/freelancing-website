@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-key="title">ODEON CAFÉ | Ristorante e Bar, Lugano</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font (Tailwind default) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for a refined, elegant look and animations */
+        :root {
+            --color-primary: #1E293B;
+            /* Deep Navy/Slate 800 */
+            --color-accent: #CBA135;
+            /* Brass/Gold Accent */
+            --color-light: #F8FAFC;
+            /* Crisp Cream */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-primary);
+        }
+
+        /* Subtle Fade-In Animation for the Hero Section on load */
+        @keyframes fadeInMove {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-on-load {
+            animation: fadeInMove 1s ease-out forwards;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Elegant button styling */
+        .btn-accent {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-accent:hover {
+            background-color: #DDAA44;
+            /* Slightly brighter gold */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-separator {
+            height: 1px;
+            background-color: var(--color-primary);
+            opacity: 0.1;
+            margin: 4rem 0;
+        }
+
+        /* Custom scrollbar for menu highlight section */
+        .menu-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .menu-scroll-container::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 4px;
+        }
+
+        .menu-scroll-container::-webkit-scrollbar-track {
+            background: #e5e7eb;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold tracking-tight text-primary uppercase"
+                style="color:var(--color-primary)">
+                Odeon
+                <span class="text-xl font-normal tracking-wider" style="color:var(--color-accent)">Lugano</span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-lg font-medium items-center">
+                <!-- Language Switcher Desktop -->
+                <div class="flex space-x-2 text-sm">
+                    <button onclick="updateLanguage('it')" class="font-bold hover:text-accent transition duration-200"
+                        id="lang-it">IT</button>
+                    <span class="text-gray-400">|</span>
+                    <button onclick="updateLanguage('en')"
+                        class="hover:text-accent transition duration-200 text-gray-400" id="lang-en">EN</button>
+                </div>
+
+                <a href="#story" class="hover:text-accent transition duration-200" style="color:var(--color-primary)"
+                    data-i18n-key="nav_story">La Nostra Storia</a>
+                <a href="#menu" class="hover:text-accent transition duration-200" style="color:var(--color-primary)"
+                    data-i18n-key="nav_menu">Menù</a>
+                <a href="#contact" class="hover:text-accent transition duration-200" style="color:var(--color-primary)"
+                    data-i18n-key="nav_visit">Visita</a>
+                <a href="tel:+41919231621"
+                    class="btn-accent px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-opacity-90 transition duration-300"
+                    data-i18n-key="nav_call">
+                    CHIAMACI
+                </a>
+            </div>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button class="md:hidden p-2 rounded-lg text-primary"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-md p-6">
+        <div class="text-right">
+            <button class="p-2 text-primary"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Language Switcher Mobile -->
+        <div class="flex justify-center space-x-4 text-xl mt-4">
+            <button onclick="updateLanguage('it'); document.getElementById('mobile-menu').classList.add('hidden');"
+                class="font-bold hover:text-accent transition duration-200">IT</button>
+            <span class="text-gray-400">|</span>
+            <button onclick="updateLanguage('en'); document.getElementById('mobile-menu').classList.add('hidden');"
+                class="hover:text-accent transition duration-200">EN</button>
+        </div>
+
+        <div class="flex flex-col space-y-6 mt-10 text-center text-2xl font-semibold">
+            <a href="#story" onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+                data-i18n-key="nav_story">La Nostra Storia</a>
+            <a href="#menu" onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+                data-i18n-key="nav_menu">Menù</a>
+            <a href="#contact" onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+                data-i18n-key="nav_visit">Visita</a>
+            <a href="tel:+41919231621" class="btn-accent mx-auto mt-8 w-48 py-3 rounded-full text-lg font-semibold"
+                data-i18n-key="nav_call">CHIAMACI</a>
+        </div>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="relative h-[90vh] overflow-hidden">
+        <!-- Hero Background Image (Parallax/Subtle effect) - Updated to .png -->
+        <div id="hero-image-container"
+            class="absolute inset-0 bg-cover bg-center transition-transform duration-[2000ms] ease-out"
+            style="background-image: url('./hero-lugano-exterior.png'); background-attachment: fixed;">
+            <!-- Dark Overlay for Readability -->
+            <div class="absolute inset-0 bg-black opacity-40"></div>
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white p-4">
+            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter fade-in-on-load"
+                style="animation-delay: 0.1s;">
+                ODEON CAFÉ
+            </h1>
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-light mt-4 mb-10 tracking-wider fade-in-on-load"
+                style="animation-delay: 0.4s;">
+                Ristorante. Bar. <span style="color:var(--color-accent)">Lugano.</span>
+            </p>
+            <p class="text-lg sm:text-xl font-normal max-w-xl mb-12 fade-in-on-load" style="animation-delay: 0.7s;"
+                data-i18n-key="hero_subtext">
+                Il fulcro centrale di Lugano. Dal mattino, fino all'ultimo Negroni.
+            </p>
+            <div class="flex space-x-4 fade-in-on-load" style="animation-delay: 1s;">
+                <a href="#contact" class="btn-accent px-8 py-3 rounded-full text-lg font-bold tracking-wider uppercase"
+                    data-i18n-key="hero_book">
+                    Prenota un Tavolo
+                </a>
+                <a href="#menu"
+                    class="border border-white text-white px-8 py-3 rounded-full text-lg font-bold tracking-wider uppercase hover:bg-white hover:text-primary transition duration-300"
+                    data-i18n-key="hero_menu">
+                    Vedi il Menù
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Story / Concept Section -->
+    <section id="story" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:flex items-center gap-12">
+
+            <!-- Image Block (Left/Top) - Updated to .png -->
+            <div class="lg:w-1/2 mb-10 lg:mb-0 reveal">
+                <img src="./cafe-interior-vibe.png" alt="Interni eleganti e accoglienti dell'Odeon Cafe"
+                    class="w-full h-auto object-cover rounded-xl shadow-2xl transition-transform duration-700 hover:scale-[1.01]">
+            </div>
+
+            <!-- Text Block (Right/Bottom) -->
+            <div class="lg:w-1/2 reveal" style="transition-delay: 0.3s;">
+                <p class="text-sm font-semibold uppercase tracking-widest text-accent" style="color:var(--color-accent)"
+                    data-i18n-key="story_philosophy">La Nostra Filosofia</p>
+                <h2 class="text-4xl sm:text-5xl font-bold mt-2 leading-tight" style="color:var(--color-primary)"
+                    data-i18n-key="story_title">
+                    L'Esperienza Odeon.
+                </h2>
+                <p class="mt-6 text-xl text-gray-700" data-i18n-key="story_p1">
+                    Più che un semplice ristorante, Odeon è un moderno punto d'incontro dove la ricca tradizione del
+                    Ristorante Italiano si fonde con l'energia cosmopolita di un bar europeo.
+                </p>
+                <p class="mt-4 text-lg text-gray-600 border-l-4 pl-4 border-accent"
+                    style="border-color:var(--color-accent)" data-i18n-key="story_p2">
+                    Dal momento in cui apriamo, serviamo caffè artigianali, pranzi gourmet freschi e, più tardi, l'Apéro
+                    perfetto. Siamo rinomati per la nostra calda ospitalità—in particolare il nostro servizio stellato,
+                    Veronica—e il nostro impegno per i piatti classici.
+                </p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#menu"
+                        class="text-lg font-semibold uppercase text-accent hover:underline transition duration-200"
+                        style="color:var(--color-accent)" data-i18n-key="story_explore">
+                        Esplora la storia completa &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Separator -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-separator"></div>
+    </div>
+
+    <!-- 3. Menu Highlights Section -->
+    <section id="menu" class="py-20 lg:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <header class="text-center mb-12 reveal">
+                <p class="text-sm font-semibold uppercase tracking-widest text-accent" style="color:var(--color-accent)"
+                    data-i18n-key="menu_showcase">Vetrina Culinaria</p>
+                <h2 class="text-4xl sm:text-5xl font-bold mt-2" style="color:var(--color-primary)"
+                    data-i18n-key="menu_title">
+                    Classici Artigianali.
+                </h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-i18n-key="menu_subtitle">
+                    Una selezione dei piatti e cocktail iconici che definiscono l'esperienza Odeon.
+                </p>
+            </header>
+
+            <!-- Horizontal Scrolling Menu Cards -->
+            <div class="flex overflow-x-scroll pb-6 space-x-6 menu-scroll-container">
+
+                <!-- Card 1: Carbonara - Updated to .png -->
+                <div
+                    class="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 reveal">
+                    <img src="./dish-carbonara.png" alt="Un piatto di Carbonara tradizionale italiana."
+                        class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-5">
+                        <h3 class="text-2xl font-semibold" style="color:var(--color-primary)"
+                            data-i18n-key="card1_title">Carbonara Perfetta</h3>
+                        <p class="text-sm text-accent mb-3 uppercase font-medium" data-i18n-key="card1_tag">Classico
+                            Italiano</p>
+                        <p class="text-gray-600" data-i18n-key="card1_desc">Il piatto di pasta romano essenziale,
+                            preparato con guanciale importato, tuorli freschi e Pecorino Romano. Semplice, ricco,
+                            divino.</p>
+                        <p class="mt-3 text-lg font-bold text-accent">CHF 28.50</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Negroni Cocktail - Updated to .png -->
+                <div class="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 reveal"
+                    style="transition-delay: 0.1s;">
+                    <img src="./dish-strawerry-cake.png" alt="Un Negroni perfettamente bilanciato"
+                        class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-5">
+                        <h3 class="text-2xl font-semibold" style="color:var(--color-primary)"
+                            data-i18n-key="card2_title">Aspetto la conferma per inserire il menu intero</h3>
+                        <p class="text-sm text-accent mb-3 uppercase font-medium" data-i18n-key="card2_tag">Apéro
+                            d'Autore</p>
+                        <p class="text-gray-600" data-i18n-key="card2_desc">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Accusamus, itaque corrupti odio sequi consequatur quisquam fuga id
+                            deleniti!</p>
+                        <p class="mt-3 text-lg font-bold text-accent">CHF 16.00</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Tiramisù - Updated to .png -->
+                <div class="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 reveal"
+                    style="transition-delay: 0.2s;">
+                    <img src="./dessert-tiramisu.png" alt="Un dessert Tiramisù cremoso, spolverato di cacao"
+                        class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-5">
+                        <h3 class="text-2xl font-semibold" style="color:var(--color-primary)"
+                            data-i18n-key="card3_title">Tiramisù Classico</h3>
+                        <p class="text-sm text-accent mb-3 uppercase font-medium" data-i18n-key="card3_tag">Dolce Divino
+                        </p>
+                        <p class="text-gray-600" data-i18n-key="card3_desc">Strati di savoiardi imbevuti di espresso,
+                            crema al mascarpone e cacao. Il finale italiano autentico e indimenticabile.</p>
+                        <p class="mt-3 text-lg font-bold text-accent">CHF 12.00</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Morning Coffee - Updated to .png -->
+                <div class="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 reveal"
+                    style="transition-delay: 0.3s;">
+                    <img src="./cafe-coffee.png" alt="Una tazza di caffè fresca in un ambiente elegante del caffè"
+                        class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-5">
+                        <h3 class="text-2xl font-semibold" style="color:var(--color-primary)"
+                            data-i18n-key="card4_title">Il Rituale Mattutino</h3>
+                        <p class="text-sm text-accent mb-3 uppercase font-medium" data-i18n-key="card4_tag">L'Esperienza
+                            Caffè</p>
+                        <p class="text-gray-600" data-i18n-key="card4_desc">Inizia la tua giornata alla maniera
+                            svizzera. Pasticcini freschi, caffè raffinato e un momento di tranquillità prima che la
+                            giornata abbia inizio.</p>
+                        <p class="mt-3 text-lg font-bold text-accent" data-i18n-key="card4_price">A partire da CHF 5.50
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Contact and Location -->
+    <section id="contact" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12">
+
+            <!-- Contact Details -->
+            <div class="reveal">
+                <p class="text-sm font-semibold uppercase tracking-widest text-accent" style="color:var(--color-accent)"
+                    data-i18n-key="contact_tag">Prenotazioni & Visita</p>
+                <h2 class="text-4xl sm:text-5xl font-bold mt-2 mb-8" style="color:var(--color-primary)"
+                    data-i18n-key="contact_title">
+                    Trovaci a Lugano.
+                </h2>
+
+                <div class="space-y-8 text-xl">
+                    <!-- Address -->
+                    <div>
+                        <h3 class="font-semibold text-2xl mb-1" style="color:var(--color-primary)"
+                            data-i18n-key="contact_address_title">Il Nostro Indirizzo</h3>
+                        <p class="text-gray-700">Via Pietro Peri 14, 6900 Lugano, Switzerland</p>
+                        <a href="https://maps.app.goo.gl/g6t5qH5T4cW2P2CWA" target="_blank"
+                            class="text-sm text-accent hover:underline transition duration-200"
+                            data-i18n-key="contact_map">
+                            Visualizza sulla Mappa &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <h3 class="font-semibold text-2xl mb-1" style="color:var(--color-primary)"
+                            data-i18n-key="contact_call_title">Chiama per Prenotare</h3>
+                        <a href="tel:0919231621" class="text-gray-700 hover:text-accent transition duration-200">
+                            +41 91 923 16 21
+                        </a>
+                    </div>
+
+                    <!-- Hours -->
+                    <div>
+                        <h3 class="font-semibold text-2xl mb-3" style="color:var(--color-primary)"
+                            data-i18n-key="contact_hours_title">Orari di Apertura</h3>
+                        <ul class="text-gray-700 space-y-1 text-lg">
+                            <li><span data-i18n-key="contact_hours_monfri">Lun - Ven:</span> <span
+                                    class="float-right font-medium">7:30 - 21:00</span></li>
+                            <li><span data-i18n-key="contact_hours_sat">Sabato:</span> <span
+                                    class="float-right font-medium">8:00 - 21:00</span></li>
+                            <li><span data-i18n-key="contact_hours_sun">Domenica:</span> <span
+                                    class="float-right font-bold text-red-600"
+                                    data-i18n-key="contact_hours_closed">Chiuso</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Placeholder / Image - Updated to .png -->
+            <div class="rounded-xl overflow-hidden shadow-2xl reveal" style="transition-delay: 0.3s;">
+                <!-- This is a placeholder for the map or a high-impact image of the exterior -->
+                <img src="./lugano-street-exterior.png" alt="Vista esterna del Ristorante Odeon sulla strada di Lugano"
+                    class="w-full h-full min-h-96 object-cover">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. Social CTA -->
+    <section class="py-16 bg-primary" style="background-color:var(--color-primary)">
+        <div class="max-w-4xl mx-auto text-center text-white reveal">
+            <h2 class="text-3xl sm:text-4xl font-bold" data-i18n-key="social_title">Segui l'Atmosfera</h2>
+            <p class="mt-3 text-lg opacity-80" data-i18n-key="social_subtitle">
+                Vivi l'atmosfera e le ultime creazioni del Ristorante Odeon.
+            </p>
+            <a href="https://www.instagram.com/odeoncafe.lugano/" target="_blank"
+                class="inline-block mt-6 px-10 py-3 rounded-full text-lg font-bold tracking-wider uppercase text-primary btn-accent">
+                @ODEONCAFE.LUGANO
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-gray-100">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm space-y-4 md:space-y-0">
+
+            <p data-i18n-key="footer_copy">&copy; 2024 Odeon Café Lugano. Tutti i diritti riservati.</p>
+
+            <div class="flex space-x-6">
+                <a href="#contact" class="hover:text-primary transition duration-200"
+                    data-i18n-key="footer_directions">Indicazioni</a>
+                <a href="mailto:info@odeonlugano.ch" class="hover:text-primary transition duration-200"
+                    data-i18n-key="footer_email">Contattaci via Email</a>
+            </div>
+
+            <div class="flex space-x-4 text-xl">
+                <!-- Instagram Icon -->
+                <a href="https://www.instagram.com/odeoncafe.lugano/" target="_blank"
+                    class="hover:text-accent transition duration-200" style="color:var(--color-primary)">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm6.6 2.4c.67 0 1.2.53 1.2 1.2v14.8c0 .67-.53 1.2-1.2 1.2H5.4c-.67 0-1.2-.53-1.2-1.2V5.4c0-.67.53-1.2 1.2-1.2h13.2zm-6.6 3c-3.19 0-5.8 2.61-5.8 5.8s2.61 5.8 5.8 5.8 5.8-2.61 5.8-5.8-2.61-5.8-5.8-5.8zm0 9.8c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm4.8-9.8c.67 0 1.2-.53 1.2-1.2s-.53-1.2-1.2-1.2-1.2.53-1.2 1.2.53 1.2 1.2 1.2z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switcher Logic
+        const translations = {
+            'it': {
+                title: 'ODEON CAFÉ | Ristorante e Bar, Lugano',
+                nav_story: 'La Nostra Storia',
+                nav_menu: 'Menù',
+                nav_visit: 'Visita',
+                nav_call: 'CHIAMACI',
+                hero_subtext: "Il fulcro centrale di Lugano. Dal mattino, fino all'ultimo Negroni.",
+                hero_book: 'Prenota un Tavolo',
+                hero_menu: 'Vedi il Menù',
+                story_philosophy: 'La Nostra Filosofia',
+                story_title: "L'Esperienza Odeon.",
+                story_p1: 'Più che un semplice ristorante, Odeon è un moderno punto d\'incontro dove la ricca tradizione del Ristorante Italiano si fonde con l\'energia cosmopolita di un bar europeo.',
+                story_p2: 'Dal momento in cui apriamo, serviamo caffè artigianali, pranzi gourmet freschi e, più tardi, l\'Apéro perfetto. Siamo rinomati per la nostra calda ospitalità—in particolare il nostro servizio stellato, Veronica—e il nostro impegno per i piatti classici.',
+                story_explore: 'Esplora la storia completa →',
+                menu_showcase: 'Vetrina Culinaria',
+                menu_title: 'Classici Artigianali.',
+                menu_subtitle: 'Una selezione dei piatti e cocktail iconici che definiscono l\'esperienza Odeon.',
+                card1_title: 'Carbonara Perfetta',
+                card1_tag: 'Classico Italiano',
+                card1_desc: 'Il piatto di pasta romano essenziale, preparato con guanciale importato, tuorli freschi e Pecorino Romano. Semplice, ricco, divino.',
+                card2_title: 'Esempio...',
+                card2_tag: 'Aspetto la conferma per inserire il menu intero',
+                card2_desc: 'Considerato uno dei migliori a Lugano. Un equilibrio perfetto di Gin, Campari e Vermouth dolce, sapientemente mescolato.',
+                card3_title: 'Esempio...',
+                card3_tag: 'Dolce Divino',
+                card3_desc: 'Strati di savoiardi imbevuti di espresso, crema al mascarpone e cacao. Il finale italiano autentico e indimenticabile.',
+                card4_title: 'Altro esempio....',
+                card4_tag: 'L\'Esperienza Caffè',
+                card4_desc: 'Inizia la tua giornata alla maniera svizzera. Pasticcini freschi, caffè raffinato e un momento di tranquillità prima che la giornata abbia inizio.',
+                card4_price: 'A partire da CHF 5.50',
+                contact_tag: 'Prenotazioni & Visita',
+                contact_title: 'Trovaci a Lugano.',
+                contact_address_title: 'Il Nostro Indirizzo',
+                contact_map: 'Visualizza sulla Mappa →',
+                contact_call_title: 'Chiama per Prenotare',
+                contact_hours_title: 'Orari di Apertura',
+                contact_hours_monfri: 'Lun - Ven:',
+                contact_hours_sat: 'Sabato:',
+                contact_hours_sun: 'Domenica:',
+                contact_hours_closed: 'Chiuso',
+                social_title: 'Segui l\'Atmosfera',
+                social_subtitle: 'Vivi l\'atmosfera e le ultime creazioni del Ristorante Odeon.',
+                footer_copy: '© 2024 Odeon Café Lugano. Tutti i diritti riservati.',
+                footer_directions: 'Indicazioni',
+                footer_email: 'Contattaci via Email'
+            },
+            'en': {
+                title: 'ODEON CAFÉ | Restaurant & Bar, Lugano',
+                nav_story: 'Our Story',
+                nav_menu: 'Menu',
+                nav_visit: 'Visit',
+                nav_call: 'CALL US',
+                hero_subtext: "Lugano's central hub. Since the morning, until the last Negroni.",
+                hero_book: 'Book a Table',
+                hero_menu: 'View Menu',
+                story_philosophy: 'Our Philosophy',
+                story_title: 'The Odeon Experience.',
+                story_p1: 'More than just a restaurant, Odeon is a modern meeting point where the rich tradition of the Italian Ristorante meets the cosmopolitan energy of a European bar.',
+                story_p2: 'From the moment we open, we serve crafted coffees, fresh gourmet lunches, and later, the perfect Apéro. We are known for our warm hospitality—especially our star service, Veronica—and our commitment to classic dishes.',
+                story_explore: 'Explore the full story →',
+                menu_showcase: 'Culinary Showcase',
+                menu_title: 'Crafted Classics.',
+                menu_subtitle: 'A selection of the iconic dishes and cocktails that define the Odeon experience.',
+                card1_title: 'Carbonara Perfetta',
+                card1_tag: 'Italian Classic',
+                card1_desc: 'The essential Roman pasta dish, made with imported guanciale, fresh yolks, and Pecorino Romano. Simple, rich, divine.',
+                card2_title: 'The Odeon Negroni',
+                card2_tag: 'Signature Apéro',
+                card2_desc: 'Considered one of the best in Lugano. A perfect balance of Gin, Campari, and Sweet Vermouth, expertly stirred.',
+                card3_title: 'Tiramisù Classico',
+                card3_tag: 'Heavenly Dessert',
+                card3_desc: 'Layers of ladyfingers dipped in espresso, mascarpone cream, and cocoa. The authentic, unforgettable Italian finish.',
+                card4_title: 'Morning Ritual',
+                card4_tag: 'The Café Experience',
+                card4_desc: 'Start your day the Swiss way. Freshly baked pastries, refined coffee, and a quiet moment before the day begins.',
+                card4_price: 'From CHF 5.50',
+                contact_tag: 'Reservations & Visit',
+                contact_title: 'Find Us in Lugano.',
+                contact_address_title: 'Our Address',
+                contact_map: 'View on Map →',
+                contact_call_title: 'Call to Reserve',
+                contact_hours_title: 'Opening Hours',
+                contact_hours_monfri: 'Mon - Fri:',
+                contact_hours_sat: 'Saturday:',
+                contact_hours_sun: 'Sunday:',
+                contact_hours_closed: 'Closed',
+                social_title: 'Follow the Vibe',
+                social_subtitle: 'Experience the atmosphere and latest creations of Ristorante Odeon.',
+                footer_copy: '© 2024 Odeon Café Lugano. All rights reserved.',
+                footer_directions: 'Directions',
+                footer_email: 'Email Us'
+            }
+        };
+
+        let currentLang = 'it';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const langData = translations[lang];
+
+            // 1. Update HTML language attribute
+            document.documentElement.setAttribute('lang', lang);
+
+            // 2. Update all translatable elements
+            document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                const key = element.getAttribute('data-i18n-key');
+                if (langData[key]) {
+                    // Special case for title which is not innerHTML
+                    if (element.tagName === 'TITLE') {
+                        element.textContent = langData[key];
+                    } else {
+                        element.textContent = langData[key];
+                    }
+                }
+            });
+
+            // 3. Update language switcher highlighting
+            document.getElementById('lang-it').classList.remove('font-bold', 'text-gray-400');
+            document.getElementById('lang-en').classList.remove('font-bold', 'text-gray-400');
+
+            document.getElementById('lang-it').classList.add(lang === 'it' ? 'font-bold' : 'text-gray-400');
+            document.getElementById('lang-en').classList.add(lang === 'en' ? 'font-bold' : 'text-gray-400');
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize language switcher state
+            updateLanguage(currentLang);
+
+            // 1. Intersection Observer for Scroll Animations (Reveal)
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Stop observing after the element is visible once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, // Start animation when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Slightly delayed to avoid activating too early
+            });
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // 2. Subtle Parallax/Scroll Effect on Hero Image
+            const heroImageContainer = document.getElementById('hero-image-container');
+            if (heroImageContainer) {
+                window.addEventListener('scroll', () => {
+                    const scrollPosition = window.scrollY;
+                    // Move background image up slowly as user scrolls down
+                    heroImageContainer.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

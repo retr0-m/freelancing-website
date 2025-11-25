@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantinone - Grotto ristorante</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter per un look pulito e moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Grotto del Futuro Aesthetic Configuration --- */
+        :root {
+            --color-primary-dark: #101010;
+            /* Grotto/Future Dark */
+            --color-secondary-grey: #262626;
+            /* Concrete/Stone Texture Base */
+            --color-accent-copper: #FF8C42;
+            /* Burnt Copper Glow */
+            --color-text-light: #F0F0F0;
+            --color-text-dim: #A0A0A0;
+        }
+
+        body {
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            letter-spacing: -0.025em;
+            /* Tighten up spacing for modern feel */
+        }
+
+        /* Font Classes */
+        .text-copper {
+            color: var(--color-accent-copper);
+        }
+
+        .bg-stone-dark {
+            background-color: var(--color-secondary-grey);
+        }
+
+        .border-copper {
+            border-color: var(--color-accent-copper);
+        }
+
+        /* Modern Divider (A thin, glowing line) */
+        .grotto-divider {
+            height: 1px;
+            width: 100%;
+            max-width: 150px;
+            background-color: var(--color-accent-copper);
+            box-shadow: 0 0 8px var(--color-accent-copper);
+            margin: 1.5rem auto;
+            transform: skewX(-15deg);
+            /* Innovative touch */
+        }
+
+        /* --- Animation Styles (On Scroll) --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(2rem);
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .fade-in-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Glitch/Layered Effect */
+        .hero-title {
+            text-shadow:
+                -1px -1px 0 #000,
+                1px 1px 0 var(--color-accent-copper),
+                2px 2px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        /* Horizontal Scroll (More prominent for mobile) */
+        .horizontal-scroll-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .horizontal-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans-body">
+
+    <!-- Header & Navigation (Minimalist and Fixed) -->
+    <header class="sticky top-0 z-50 p-4 bg-primary-dark/80 backdrop-blur-sm border-b border-secondary-grey/50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="#hero"
+                class="text-3xl font-extrabold text-copper transition-all duration-300 tracking-widest hover:text-white">
+                CANTINONE
+            </a>
+            <!-- Minimalist Navigation -->
+            <nav class="hidden sm:block">
+                <ul class="flex space-x-6 text-sm font-semibold uppercase">
+                    <li><a href="#storia" class="hover:text-copper transition">Origine</a></li>
+                    <li><a href="#galleria" class="hover:text-copper transition">Architettura</a></li>
+                    <li><a href="#menu" class="hover:text-copper transition">Manifesto</a></li>
+                    <li><a href="#contatti"
+                            class="py-1 px-3 rounded-full border border-copper text-copper hover:bg-copper hover:text-primary-dark transition">Prenota</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sm:hidden text-lg text-copper">☰</div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto">
+        <!-- 1. Hero Section (Immersive, full viewport height) -->
+        <section id="hero" class="relative flex items-center justify-center h-[90vh] text-center p-4 overflow-hidden"
+            style="background-image: url('./01-aaa.jpg'); background-size: cover; background-position: center; border-bottom: 2px solid var(--color-accent-copper);">
+            <div class="absolute inset-0 bg-black/60 backdrop-brightness-75"></div>
+            <div class="relative z-10 p-6">
+                <h1 class="text-6xl md:text-8xl font-black text-white mb-4 hero-title tracking-tight fade-in-up">
+                    RISTORANTE<br>CANTINONE
+                </h1>
+                <p class="text-xl md:text-3xl font-light text-copper italic fade-in-up" style="transition-delay: 0.2s;">
+                    Cucina Tellurica. Esperienze Esterne.
+                </p>
+                <p>Il contenuto seguente non è altro che un anteprima, tutto il contenuto e/o il design può essere
+                    cambiato.</p>
+                <a href="#contatti"
+                    class="mt-10 inline-block px-10 py-4 bg-copper text-primary-dark rounded-full font-bold uppercase tracking-wider shadow-xl shadow-copper/50 hover:bg-white transition duration-500 transform hover:scale-[1.03] fade-in-up"
+                    style="transition-delay: 0.4s;">
+                    Prenotazioni
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Origine (Storia) - Asymmetric Layout -->
+        <section id="storia" class="py-20 md:py-32 p-4 grid md:grid-cols-2 gap-12 items-start">
+
+            <div class="md:sticky md:top-28">
+                <h2 class="text-5xl md:text-7xl font-extrabold text-copper tracking-tight mb-4 fade-in-up">
+                    <span class="block text-2xl font-light text-text-dim mb-2">Sezione I</span>
+                    Origine.
+                </h2>
+                <div class="grotto-divider mb-8 ml-0 fade-in-up" style="transition-delay: 0.1s;"></div>
+            </div>
+
+            <div class="space-y-10 text-lg md:text-xl">
+                <p class="fade-in-up" style="transition-delay: 0.3s;">
+                    Il Cantinone riscrive la narrativa del grotto tradizionale. Non è solo pietra e legno, ma un punto
+                    di fusione tra la storia geologica di Lugano e l'ingegneria del gusto. Un luogo dove l'eredità
+                    Ticinese è processata attraverso lenti ipermoderne.
+                </p>
+                <p class="fade-in-up font-semibold text-copper" style="transition-delay: 0.5s;">
+                    La nostra filosofia non è conservativa, è evolutiva: ingredienti locali estratti, non semplicemente
+                    raccolti. Tecnica ancestrale, risultato futuristico.
+                </p>
+                <p class="fade-in-up text-text-dim" style="transition-delay: 0.7s;">
+                    Questo è un invito a cenare dove il tempo si stratifica.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. L'Architettura del Gusto (Galleria) - Immersive Grid -->
+        <section id="galleria" class="py-20 md:py-32 p-4 bg-stone-dark border-y border-secondary-grey/50">
+            <h2 class="text-5xl md:text-7xl font-extrabold text-center mb-4 fade-in-up tracking-tight">
+                L'Architettura del Gusto
+            </h2>
+            <p class="text-center italic text-copper mb-12 fade-in-up" style="transition-delay: 0.2s;">
+                Spazi scolpiti. Materia e luce.
+            </p>
+
+            <!-- Gallery Grid with Modern Gaps and Overlap Effect -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+
+                <div class="col-span-2 row-span-2 overflow-hidden rounded-xl shadow-2xl fade-in-up">
+                    <img src="./02-aab.jpg" alt="Ingresso Minimalista"
+                        class="w-full h-full object-cover transition duration-700 hover:scale-[1.05] grayscale hover:grayscale-0">
+                </div>
+
+                <div class="col-span-2 overflow-hidden rounded-xl shadow-xl fade-in-up" style="transition-delay: 0.2s;">
+                    <img src="./03-aac.jpg" alt="Dettaglio Pietra Rame"
+                        class="w-full h-full object-cover transition duration-700 hover:scale-[1.05]">
+                </div>
+
+                <div class="col-span-1 overflow-hidden rounded-xl shadow-xl fade-in-up" style="transition-delay: 0.4s;">
+                    <img src="./04-aad.jpg" alt="Tavolo HiTech"
+                        class="w-full h-48 md:h-full object-cover transition duration-700 hover:scale-[1.05]">
+                </div>
+
+                <div class="col-span-1 overflow-hidden rounded-xl shadow-xl fade-in-up" style="transition-delay: 0.6s;">
+                    <img src="./05-aae.jpg" alt="Cantina Vini Illuminata"
+                        class="w-full h-48 md:h-full object-cover transition duration-700 hover:scale-[1.05]">
+                </div>
+
+                <div class="col-span-2 overflow-hidden rounded-xl shadow-xl fade-in-up" style="transition-delay: 0.8s;">
+                    <img src="./06-aaf.jpg" alt="Cucina Aperta LED"
+                        class="w-full h-full object-cover transition duration-700 hover:scale-[1.05]">
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 4. Manifesto Culinario (Menu Highlights) - Itemized Display -->
+        <section id="menu" class="py-20 md:py-32 p-4">
+            <h2 class="text-5xl md:text-7xl font-extrabold text-center mb-4 text-copper fade-in-up tracking-tight">
+                MANIFESTO CULINARIO
+            </h2>
+            <div class="grotto-divider fade-in-up" style="transition-delay: 0.1s;"></div>
+            <p class="text-center text-xl text-text-dim mb-16 fade-in-up" style="transition-delay: 0.2s;">
+                La tradizione filtrata attraverso il domani.
+            </p>
+
+            <div class="space-y-8">
+
+                <!-- Dish 1: Focused on Texture and Element -->
+                <div
+                    class="flex flex-col md:flex-row bg-stone-dark/50 p-6 md:p-8 rounded-xl border border-secondary-grey shadow-lg hover:border-copper transition duration-300 fade-in-up">
+                    <div class="md:w-1/3 mb-4 md:mb-0 md:pr-8">
+                        <h3 class="text-3xl font-extrabold text-white mb-1">Ossobuco Ricostruito</h3>
+                        <p class="text-sm text-copper font-mono uppercase tracking-widest">Processo Lento - 48H</p>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-text-light mb-2">
+                            L'ossobuco viene decostruito e ricomposto in una matrice densa e scura. Servito con un
+                            risotto allo zafferano ultra-cremoso, rifinito con aria di gremolada. Un'esperienza tattile.
+                        </p>
+                        <p class="text-sm italic text-text-dim">Materie Prime: Vitello Ticinese (km 0), Zafferano di
+                            Monte. Costo: CHF 48</p>
+                    </div>
+                </div>
+
+                <!-- Dish 2: Focused on Contrast -->
+                <div class="flex flex-col md:flex-row bg-stone-dark/50 p-6 md:p-8 rounded-xl border border-secondary-grey shadow-lg hover:border-copper transition duration-300 fade-in-up"
+                    style="transition-delay: 0.2s;">
+                    <div class="md:w-1/3 mb-4 md:mb-0 md:pr-8">
+                        <h3 class="text-3xl font-extrabold text-white mb-1">Polenta e Brasato: 2.0</h3>
+                        <p class="text-sm text-copper font-mono uppercase tracking-widest">Dualità - Caldo/Freddo</p>
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-text-light mb-2">
+                            Il Brasato, cotto sottovuoto in riduzione di Merlot, è servito con un cubo di polenta
+                            pressata e croccante. L'elemento innovativo: una spuma di Taleggio fredda e affumicata che
+                            introduce un contrasto termico netto.
+                        </p>
+                        <p class="text-sm italic text-text-dim">Materie Prime: Manzo di Allevamento, Polenta Biologica.
+                            Costo: CHF 42</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action for Menu -->
+                <div class="text-center pt-8 fade-in-up" style="transition-delay: 0.4s;">
+                    <a href="#contatti"
+                        class="inline-block px-8 py-3 bg-primary-dark border-2 border-copper text-copper rounded-lg font-bold uppercase tracking-wider hover:bg-copper hover:text-primary-dark shadow-lg transition duration-300 transform hover:-translate-y-1">
+                        Scarica Menu Completo (Placeholder)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Coordinate e Accesso (Contatti) -->
+        <section id="contatti" class="py-20 md:py-32 p-4 bg-stone-dark border-t border-copper/50">
+            <h2 class="text-5xl md:text-7xl font-extrabold text-center mb-4 text-white fade-in-up tracking-tight">
+                COORDINATE E ACCESSO
+            </h2>
+            <div class="grotto-divider fade-in-up" style="transition-delay: 0.1s;"></div>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-16 text-center">
+                <!-- Orari (Shifted to "Protocolli Operativi") -->
+                <div class="fade-in-up p-6 bg-primary-dark/70 rounded-lg border border-secondary-grey shadow-2xl"
+                    style="transition-delay: 0.2s;">
+                    <p class="text-xl font-bold text-copper mb-3">Protocolli Operativi</p>
+                    <p class="text-lg font-semibold text-white mb-1">Martedì – Sabato</p>
+                    <div class="mt-4 space-y-1">
+                        <p class="font-bold">
+                            Pranzo: <span class="text-copper ml-2">11:30 – 14:00</span>
+                        </p>
+                        <p class="font-bold">
+                            Cena: <span class="text-copper ml-2">18:30 – 22:00</span>
+                        </p>
+                    </div>
+                    <p class="text-xs text-text-dim mt-4">Chiuso: Ciclo Domenica / Lunedì</p>
+                </div>
+
+                <!-- Telefono (Shifted to "Canale Diretto") -->
+                <div class="fade-in-up p-6 bg-primary-dark/70 rounded-lg border border-secondary-grey shadow-2xl"
+                    style="transition-delay: 0.4s;">
+                    <p class="text-xl font-bold text-copper mb-3">Canale Diretto</p>
+                    <a href="tel:0919231068" class="text-5xl font-extrabold text-white transition hover:text-copper">091
+                        923 10 68</a>
+                    <p class="text-sm italic text-text-dim mt-3">
+                        L'accesso al modulo è ottimale.
+                    </p>
+                </div>
+
+                <!-- Indirizzo (Shifted to "Localizzazione GPS") -->
+                <div class="fade-in-up p-6 bg-primary-dark/70 rounded-lg border border-secondary-grey shadow-2xl"
+                    style="transition-delay: 0.6s;">
+                    <p class="text-xl font-bold text-copper mb-3">Localizzazione GPS</p>
+                    <p class="mb-2 text-white">Piazza Cioccaro 8, 6900 Lugano, CH</p>
+                    <a href="https://maps.app.goo.gl/example" target="_blank"
+                        class="inline-block px-4 py-2 bg-copper text-primary-dark rounded-md text-sm font-semibold hover:bg-white transition duration-300">
+                        Visualizza Mappa Tattica
+                    </a>
+                </div>
+            </div>
+
+            <!-- Call to Action Finale: Reservation System -->
+            <div class="mt-20 text-center fade-in-up" style="transition-delay: 0.8s;">
+                <h3 class="text-4xl font-extrabold text-white mb-4">
+                    PRENOTA LA TUA ESPERIENZA
+                </h3>
+                <a href="tel:0919231068"
+                    class="inline-block px-16 py-6 bg-copper text-primary-dark rounded-full font-black uppercase tracking-widest text-xl shadow-2xl shadow-copper/70 hover:bg-white transition duration-500 transform hover:scale-[1.05]">
+                    Richiesta di Slot
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Data Stream) -->
+    <footer class="bg-primary-dark py-8 p-4 text-center text-xs text-text-dim border-t border-copper/50">
+        <p class="mb-2 font-mono">
+            Ristorante Cantinone — Piazza Cioccaro 8, 6900 Lugano, CH
+        </p>
+        <p class="font-mono uppercase tracking-widest text-copper">
+            Sistema Operativo Ristorazione V4.0. Copyright © 2025.
+        </p>
+    </footer>
+
+    <!-- JavaScript for Scroll Animations -->
+    <script>
+
+        /**
+         * Configura l'IntersectionObserver per le animazioni basate sullo scroll.
+         */
+        function setupScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in-up');
+
+            // Definisce le opzioni per l'observer
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Attiva quando il 10% dell'elemento è visibile
+            };
+
+            // Funzione di callback quando l'elemento entra/esce dal viewport
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Smette di osservare dopo l'attivazione
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            // Crea e avvia l'observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // --- Inizializzazione ---
+        window.onload = () => {
+            // Avvia le animazioni di scroll
+            setupScrollAnimations();
+        };
+
+    </script>
+</body>
+
+</html>
