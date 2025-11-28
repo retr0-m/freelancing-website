@@ -95,6 +95,27 @@
             opacity: 1;
             transform: translate(0, 0);
         }
+
+        /* --- 3. Stili Menu Mobile (Aggiunto) --- */
+        #mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0c0a09;
+            /* Sfondo scuro */
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        #mobile-menu-overlay.is-open {
+            transform: translateX(0);
+        }
     </style>
 </head>
 
@@ -104,6 +125,38 @@
     <div id="preloader">
         <div class="loading-text logo-text">PASSAPAROLA</div>
     </div>
+
+    <!-- Menu Mobile Overlay (Aggiunto) -->
+    <div id="mobile-menu-overlay" class="md:hidden">
+        <div class="flex justify-between items-center mb-10">
+            <div class="text-3xl font-bold logo-text text-amber-500">
+                MENU
+            </div>
+            <!-- Pulsante Chiudi (X) -->
+            <button onclick="toggleMenu()" class="text-3xl text-amber-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <nav class="flex flex-col space-y-6 text-xl uppercase font-semibold">
+            <a href="#home" class="hover:text-amber-500 transition-colors" onclick="toggleMenu()">Home</a>
+            <a href="#menu" class="hover:text-amber-500 transition-colors" onclick="toggleMenu()">Menù</a>
+            <a href="#gallery" class="hover:text-amber-500 transition-colors" onclick="toggleMenu()">Galleria</a>
+            <a href="#contact" class="hover:text-amber-500 transition-colors" onclick="toggleMenu()">Contatti</a>
+        </nav>
+
+        <div class="mt-auto pt-8">
+            <a href="tel:+41919662819" target="_blank"
+                class="block text-center bg-amber-500 text-neutral-900 py-3 px-5 rounded-full text-lg font-extrabold hover:bg-amber-400 transition-all shadow-lg">
+                Prenota un Tavolo
+            </a>
+        </div>
+    </div>
+    <!-- Fine Menu Mobile Overlay -->
+
 
     <!-- Contenuto Principale -->
     <div id="content" class="min-h-screen">
@@ -126,10 +179,11 @@
                     class="bg-amber-500 text-neutral-900 py-2 px-5 rounded-full text-sm font-semibold hover:bg-amber-400 transition-all shadow-lg hidden md:block">
                     Prenota un Tavolo
                 </a>
-                <!-- Icona Menu Mobile (Placeholder) -->
-                <button class="md:hidden text-2xl text-amber-500">
+                <!-- Icona Menu Mobile (Placeholder - Ora con click handler) -->
+                <button onclick="toggleMenu()" class="md:hidden text-2xl text-amber-500 focus:outline-none">
+                    <!-- Icona Hamburger -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" class="w-6 h-6">
+                        stroke="currentColor" class="w-7 h-7">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
@@ -362,6 +416,25 @@
 
 
     <script>
+        // --- Variabile di Stato Menu Mobile ---
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu-overlay');
+            isMenuOpen = !isMenuOpen;
+
+            if (isMenuOpen) {
+                menu.classList.add('is-open');
+                // Impedisce lo scroll del body quando il menu è aperto
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.classList.remove('is-open');
+                // Ripristina lo scroll del body
+                document.body.style.overflow = '';
+            }
+        }
+
+
         // --- 1. Logica Animazione Preloader (Caricamento) ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
@@ -401,6 +474,10 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                // Assicurati che il menu mobile si chiuda anche tramite il listener principale
+                if (isMenuOpen) {
+                    toggleMenu();
+                }
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });

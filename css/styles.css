@@ -200,6 +200,8 @@ body {
   text-decoration: none
 }
 
+
+
 .section-title {
   font-size: 24px;
   color: white;
@@ -400,4 +402,53 @@ footer .socials {
 /* small */
 small {
   color: rgba(255, 255, 255, 0.6)
+}
+
+
+
+
+
+
+
+/* Gird in portfolio */
+
+.project-list {
+  display: grid;
+  /* Removes the limit on rows so they generate automatically */
+  grid-auto-rows: auto;
+  gap: 20px;
+  /* Replaces grid-column-gap/row-gap */
+
+  /* Mobile First (1 Column) */
+  grid-template-columns: 1fr;
+}
+
+/* Tablet / Half Screen (approx > 768px) */
+@media (min-width: 768px) {
+  .project-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Full Screen Desktop (approx > 1024px) */
+@media (min-width: 1024px) {
+  .project-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: 1s ease;
+  /* Removed min/max widths to let the Grid control the sizing */
+  width: 100%;
+}
+
+.project iframe {
+  border-radius: 13px;
+  width: 100%;
+  height: 400px;
 }

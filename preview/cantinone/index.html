@@ -85,6 +85,10 @@
         .horizontal-scroll-container::-webkit-scrollbar {
             display: none;
         }
+
+        .-translate-y-100vh {
+            transform: translateY(100vh);
+        }
     </style>
 </head>
 
@@ -108,9 +112,20 @@
                     </li>
                 </ul>
             </nav>
-            <div class="sm:hidden text-lg text-copper">☰</div>
+            <div class="sm:hidden text-lg text-copper cursor-pointer" id="menu-toggle">☰</div>
         </div>
     </header>
+    <nav id="mobile-menu"
+        class="fixed top-16 left-0 w-full bg-stone-dark/95 backdrop-blur-sm z-40 transition-transform duration-300 transform -translate-y-full sm:hidden border-b border-copper">
+        <ul class="flex flex-col space-y-2 p-6 text-base font-semibold uppercase text-center">
+            <li><a href="#storia" class="hover:text-copper transition block py-2">Origine</a></li>
+            <li><a href="#galleria" class="hover:text-copper transition block py-2">Architettura</a></li>
+            <li><a href="#menu" class="hover:text-copper transition block py-2">Manifesto</a></li>
+            <li><a href="#contatti"
+                    class="mt-4 py-2 px-3 rounded-full border border-copper text-copper hover:bg-copper hover:text-primary-dark transition block">Prenota</a>
+            </li>
+        </ul>
+    </nav>
 
     <main class="max-w-5xl mx-auto">
         <!-- 1. Hero Section (Immersive, full viewport height) -->
@@ -217,13 +232,12 @@
                 <div
                     class="flex flex-col md:flex-row bg-stone-dark/50 p-6 md:p-8 rounded-xl border border-secondary-grey shadow-lg hover:border-copper transition duration-300 fade-in-up">
                     <div class="md:w-1/3 mb-4 md:mb-0 md:pr-8">
-                        <h3 class="text-3xl font-extrabold text-white mb-1">Ossobuco Ricostruito</h3>
-                        <p class="text-sm text-copper font-mono uppercase tracking-widest">Processo Lento - 48H</p>
+                        <h3 class="text-3xl font-extrabold text-white mb-1">Esempio..</h3>
+                        <p class="text-sm text-copper font-mono uppercase tracking-widest">Esempio esempio...</p>
                     </div>
                     <div class="md:w-2/3">
                         <p class="text-text-light mb-2">
-                            L'ossobuco viene decostruito e ricomposto in una matrice densa e scura. Servito con un
-                            risotto allo zafferano ultra-cremoso, rifinito con aria di gremolada. Un'esperienza tattile.
+                            Inserirò l'intero menù appena comprato il servizio
                         </p>
                         <p class="text-sm italic text-text-dim">Materie Prime: Vitello Ticinese (km 0), Zafferano di
                             Monte. Costo: CHF 48</p>
@@ -234,14 +248,13 @@
                 <div class="flex flex-col md:flex-row bg-stone-dark/50 p-6 md:p-8 rounded-xl border border-secondary-grey shadow-lg hover:border-copper transition duration-300 fade-in-up"
                     style="transition-delay: 0.2s;">
                     <div class="md:w-1/3 mb-4 md:mb-0 md:pr-8">
-                        <h3 class="text-3xl font-extrabold text-white mb-1">Polenta e Brasato: 2.0</h3>
+                        <h3 class="text-3xl font-extrabold text-white mb-1">Esempio...</h3>
                         <p class="text-sm text-copper font-mono uppercase tracking-widest">Dualità - Caldo/Freddo</p>
                     </div>
                     <div class="md:w-2/3">
                         <p class="text-text-light mb-2">
                             Il Brasato, cotto sottovuoto in riduzione di Merlot, è servito con un cubo di polenta
-                            pressata e croccante. L'elemento innovativo: una spuma di Taleggio fredda e affumicata che
-                            introduce un contrasto termico netto.
+                            pressata e croccante.
                         </p>
                         <p class="text-sm italic text-text-dim">Materie Prime: Manzo di Allevamento, Polenta Biologica.
                             Costo: CHF 42</p>
@@ -261,7 +274,7 @@
         <!-- 5. Coordinate e Accesso (Contatti) -->
         <section id="contatti" class="py-20 md:py-32 p-4 bg-stone-dark border-t border-copper/50">
             <h2 class="text-5xl md:text-7xl font-extrabold text-center mb-4 text-white fade-in-up tracking-tight">
-                COORDINATE E ACCESSO
+                DOVE TROVARCI
             </h2>
             <div class="grotto-divider fade-in-up" style="transition-delay: 0.1s;"></div>
 
@@ -269,7 +282,7 @@
                 <!-- Orari (Shifted to "Protocolli Operativi") -->
                 <div class="fade-in-up p-6 bg-primary-dark/70 rounded-lg border border-secondary-grey shadow-2xl"
                     style="transition-delay: 0.2s;">
-                    <p class="text-xl font-bold text-copper mb-3">Protocolli Operativi</p>
+                    <p class="text-xl font-bold text-copper mb-3">Orari</p>
                     <p class="text-lg font-semibold text-white mb-1">Martedì – Sabato</p>
                     <div class="mt-4 space-y-1">
                         <p class="font-bold">
@@ -285,22 +298,22 @@
                 <!-- Telefono (Shifted to "Canale Diretto") -->
                 <div class="fade-in-up p-6 bg-primary-dark/70 rounded-lg border border-secondary-grey shadow-2xl"
                     style="transition-delay: 0.4s;">
-                    <p class="text-xl font-bold text-copper mb-3">Canale Diretto</p>
+                    <p class="text-xl font-bold text-copper mb-3">Telefono</p>
                     <a href="tel:0919231068" class="text-5xl font-extrabold text-white transition hover:text-copper">091
                         923 10 68</a>
                     <p class="text-sm italic text-text-dim mt-3">
-                        L'accesso al modulo è ottimale.
+                        È richiesto di chiamare durante gli orari di apertura
                     </p>
                 </div>
 
                 <!-- Indirizzo (Shifted to "Localizzazione GPS") -->
                 <div class="fade-in-up p-6 bg-primary-dark/70 rounded-lg border border-secondary-grey shadow-2xl"
                     style="transition-delay: 0.6s;">
-                    <p class="text-xl font-bold text-copper mb-3">Localizzazione GPS</p>
+                    <p class="text-xl font-bold text-copper mb-3">Dove trovarci</p>
                     <p class="mb-2 text-white">Piazza Cioccaro 8, 6900 Lugano, CH</p>
                     <a href="https://maps.app.goo.gl/example" target="_blank"
                         class="inline-block px-4 py-2 bg-copper text-primary-dark rounded-md text-sm font-semibold hover:bg-white transition duration-300">
-                        Visualizza Mappa Tattica
+                        Visualizza Mappa
                     </a>
                 </div>
             </div>
@@ -312,7 +325,7 @@
                 </h3>
                 <a href="tel:0919231068"
                     class="inline-block px-16 py-6 bg-copper text-primary-dark rounded-full font-black uppercase tracking-widest text-xl shadow-2xl shadow-copper/70 hover:bg-white transition duration-500 transform hover:scale-[1.05]">
-                    Richiesta di Slot
+                    Prenotare
                 </a>
             </div>
         </section>
@@ -363,11 +376,36 @@
             });
         }
 
+        function setupMobileMenu() {
+            const toggleButton = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Funzione per chiudere esplicitamente il menu (usata nei link)
+            const closeMenu = () => {
+                mobileMenu.classList.remove('translate-y-0');
+                mobileMenu.classList.add('-translate-y-100vh');
+            }
+
+            // Funzione per fare il toggle
+            toggleButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('-translate-y-100vh');
+                mobileMenu.classList.toggle('translate-y-0');
+            });
+
+            // Chiudi il menu se si fa clic su un link al suo interno
+            const menuLinks = mobileMenu.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        }
+
         // --- Inizializzazione ---
         window.onload = () => {
             // Avvia le animazioni di scroll
             setupScrollAnimations();
+            setupMobileMenu();
         };
+
 
     </script>
 </body>
